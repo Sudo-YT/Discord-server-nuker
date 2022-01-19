@@ -67,3 +67,4 @@ try:
 except discord.errors.HTTPException and discord.errors.LoginFailure:
     time.sleep(1)
     print("[+] Token incorrect! Try again")
+    time.sleep(1)
