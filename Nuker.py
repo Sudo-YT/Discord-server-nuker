@@ -6,7 +6,6 @@ from discord.ext import commands
 
 BOT_PREFIX = "$"
 channel_names = ["Beamed by Sudo"]
-SKIP_BOTS = False
 
 bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
