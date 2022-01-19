@@ -13,18 +13,6 @@ bot.remove_command('Help')
 
 token = "ENTER TOKEN HERE"
 
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        embed = discord.Embed(
-        colour=discord.Colour.red(),
-    )
-
-    embed.set_author(name="NORBITE")
-    embed.add_field(name="UNKOWN ERROR :thinking:", value="Type `$Help` For A List Of Commands.", inline=True)
-
-    await ctx.send(embed=embed)
-
 print("[+] Loading Nuker...")
 
 @bot.event
