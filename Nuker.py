@@ -11,7 +11,7 @@ SKIP_BOTS = False
 bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
 
-token = "OTMyODc0OTEwODc4MDA3MzM4.YeZVdg.4OvVyvntn3dvQELrnUBqli_wIDw"
+token = "ENTER TOKEN HERE"
 
 @bot.event
 async def on_command_error(ctx, error):
