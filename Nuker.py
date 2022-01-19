@@ -17,7 +17,7 @@ print("[+] Loading Nuker...")
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        print("[+] Command Not Found Type '$start' To Nuke")
+        print("[+] Command Not Found! Type '$start' To Nuke")
 
 @bot.event
 async def on_ready():
