@@ -1,4 +1,3 @@
-import discord
 import random
 import os
 import time
