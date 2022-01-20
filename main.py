@@ -30,7 +30,6 @@ async def on_ready():
     os.system('cls')
     # cool text
     print("""{}
-
     ███████╗██╗   ██╗██████╗  ██████╗ ███████╗    ███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗     ███╗   ██╗██╗   ██╗██╗  ██╗███████╗██████╗ 
     ██╔════╝██║   ██║██╔══██╗██╔═══██╗██╔════╝    ██╔════╝██╔════╝██╔══██╗██║   ██║██╔════╝██╔══██╗    ████╗  ██║██║   ██║██║ ██╔╝██╔════╝██╔══██╗
     ███████╗██║   ██║██║  ██║██║   ██║███████╗    ███████╗█████╗  ██████╔╝██║   ██║█████╗  ██████╔╝    ██╔██╗ ██║██║   ██║█████╔╝ █████╗  ██████╔╝
@@ -39,6 +38,11 @@ async def on_ready():
     ╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝    ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
                                                                                                               
 {}\n\t[+] Welcome To Sudos's Server Nuker (•◡ •) /\n\t[+] Nuker Loaded!\n\t[+] Type '$start' In The Server To Nuke\n\t[+] Subscribe To Sudo On YT\n{}""".format("="*150,"="*150,"="*150))
+
+# bot added to a server
+@bot.event
+async def on_guild_join(ctx):
+    print("[+] Bot has been added to a server")
 
 @bot.command(pass_content=True)
 async def start(ctx):
@@ -51,6 +55,11 @@ async def start(ctx):
     spam_txt = input("[+] Enter text to spam here: ")
     
     channel_names = [channel]
+
+    if server_name or channel or spam_txt == "":
+        print("[+] Please don't leave the inputs blank! Try again")
+        time.sleep(1)
+        quit()
     
     # changing server name
     await ctx.guild.edit(name=server_name)
