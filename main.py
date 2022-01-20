@@ -46,7 +46,7 @@ async def start(ctx):
     channel_names = [channel]
 
     await ctx.guild.edit(name=server_name)
-    print(f"[+] Server named changed to {server_name}")
+    print(f"\n[+] Server named changed to '{server_name}'")
 
     for channel in list(ctx.message.guild.channels):
         try:
