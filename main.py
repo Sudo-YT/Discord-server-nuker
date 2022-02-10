@@ -3,7 +3,6 @@ import discord
 import random
 import os
 import time
-from discord import Permissions
 from discord.ext import commands
 
 # prefix
@@ -13,22 +12,23 @@ bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
 
 # token
-token = "ENTER TOKEN HERE!"
+token = "ENTER TOKEN HERE"
 
+os.system("title Checking Token")
 print("[+] Checking token...")
 
 # invalid command
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        print("[+] Command Not Found! Type '$start' To Nuke")
+        print("[!] Command Not Found! Type '$start' To Nuke")
 
 @bot.event
 async def on_ready():
     # valid token
     print("[+] Valid token!")
     time.sleep(1)
-    os.system('cls')
+    os.system('cls && title Sudo\'s Server Nuker')
     # cool text
     print("""{}
     ███████╗██╗   ██╗██████╗  ██████╗ ███████╗    ███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗     ███╗   ██╗██╗   ██╗██╗  ██╗███████╗██████╗ 
@@ -51,12 +51,12 @@ async def start(ctx):
     guild = ctx.guild
 
     # inputs
-    server_name = input("[+] Enter server name here: ")
-    channel = input("[+] Enter channel name here: ")
-    spam_txt = input("[+] Enter text to spam here: ")
+    server_name = input("[>] Enter server name here: ")
+    channel = input("[>] Enter channel name here: ")
+    spam_txt = input("[>] Enter text to spam here: ")
     
     channel_names = [channel]
-    
+
     # changing server name
     await ctx.guild.edit(name=server_name)
     print(f"\n[+] Server named changed to '{server_name}'")
@@ -89,5 +89,5 @@ try:
     bot.run(token)
 except discord.errors.HTTPException and discord.errors.LoginFailure:
     time.sleep(1)
-    print("[+] Token incorrect! Try again")
+    print("[!] Token incorrect! Try again")
     time.sleep(1)
