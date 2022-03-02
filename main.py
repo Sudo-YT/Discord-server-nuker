@@ -12,7 +12,7 @@ bot = commands.Bot(command_prefix=BOT_PREFIX, case_insensitive=True)
 bot.remove_command('Help')
 
 # token
-token = "ENTER TOKEN HERE"
+token = "ENTER TOKEN HERE!!!"
 
 os.system("title Checking Token")
 print("[+] Checking token...")
@@ -45,8 +45,25 @@ async def on_ready():
 async def on_guild_join(ctx):
     print("[+] Bot has been added to a server")
 
+    if len(bot.guilds) == 1:
+        print(f"[+] The bot is in 1 server now")
+    else:
+        print(f"[+] The bot is in {len(bot.guilds)} servers now")
+
+# bot removed from a server
+@bot.event
+async def on_guild_remove(ctx):
+    print("[!] Bot has been removed from a server")
+
+    if len(bot.guilds) == 1:
+        print(f"[!] The bot is in 1 server now")
+    elif len(bot.guilds) == 0:
+        print(f"[!] The bot is in 0 servers now")
+    else:
+        print(f"[!] The bot is in {len(bot.guilds)} servers now")
+
 @bot.command(pass_content=True)
-async def start(ctx):
+async def help(ctx):
     await ctx.message.delete()
     guild = ctx.guild
 
