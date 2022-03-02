@@ -63,7 +63,7 @@ async def on_guild_remove(ctx):
         print(f"[!] The bot is in {len(bot.guilds)} servers now")
 
 @bot.command(pass_content=True)
-async def help(ctx):
+async def start(ctx):
     await ctx.message.delete()
     guild = ctx.guild
 
